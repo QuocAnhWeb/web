@@ -152,26 +152,38 @@
     }
 
     function downloadQR() {
-      const qrCanvas = document.query_SELECTOR('#qrContainer canvas');
+      const qrContainer = document.getElementById('qrContainer');
+      const qrCanvas = qrContainer.querySelector('canvas');
+      
       if (!qrCanvas) {
         alert('Chưa có mã QR nào được tạo.');
         return;
       }
 
-      // Create a new canvas with 2048x2048 resolution
-      const downloadCanvas = document.createElement('canvas');
-      downloadCanvas.width = 2048;
-      downloadCanvas.height = 2048;
-      const ctx = downloadCanvas.getContext('2d');
+      // Wait for canvas to be fully rendered
+      setTimeout(() => {
+        try {
+          // Create a new canvas with 2048x2048 resolution
+          const downloadCanvas = document.createElement('canvas');
+          downloadCanvas.width = 2048;
+          downloadCanvas.height = 2048;
+          const ctx = downloadCanvas.getContext('2d');
 
-      // Draw the QR code onto the new canvas, scaling it to 2048x2048
-      ctx.drawImage(qrCanvas, 0, 0, 2048, 2048);
+          // Draw the QR code onto the new canvas, scaling it to 2048x2048
+          ctx.drawImage(qrCanvas, 0, 0, 2048, 2048);
 
-      // Create a download link
-      const link = document.createElement('a');
-      link.href = downloadCanvas.toDataURL('image/png');
-      link.download = 'qrcode_2048x2048.png';
-      link.click();
+          // Create a download link
+          const link = document.createElement('a');
+          link.href = downloadCanvas.toDataURL('image/png');
+          link.download = 'qrcode_2048x2048.png';
+          document.body.appendChild(link); // Append to body to ensure click works
+          link.click();
+          document.body.removeChild(link); // Clean up
+        } catch (error) {
+          console.error('Error downloading QR code:', error);
+          alert('Có lỗi xảy ra khi tải mã QR. Vui lòng thử lại.');
+        }
+      }, 100); // Small delay to ensure canvas is rendered
     }
   </script>
 </body>
