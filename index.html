@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Công Cụ</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #e0e5ec;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin: 20px 0;
+      text-align: center;
+      color: #2c3e50;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .card {
+      background: #e0e5ec;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #f8fbff;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 12px 12px 24px #c8d0e7, -12px -12px 24px #ffffff;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.2em;
+      color: #2c3e50;
+    }
+
+    .card p {
+      margin: 10px 0 0;
+      font-size: 0.9em;
+      color: #7f8c8d;
+    }
+
+    .card.active {
+      background: linear-gradient(145deg, #f0f4fa, #d1d9e6);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Website Công Cụ</h1>
+  <div class="container">
+    <div class="card" onclick="navigate('https://www.qr-code-generator.com/')">
+      <h3>Tạo Mã QR</h3>
+      <p>Tạo mã QR nhanh chóng và dễ dàng</p>
+    </div>
+    <div class="card" onclick="showDeveloping()">
+      <h3>Chức Năng Đang Phát Triển</h3>
+      <p>Sẽ ra mắt trong tương lai</p>
+    </div>
+    <div class="card" onclick="showDeveloping()">
+      <h3>Chức Năng Đang Phát Triển</h3>
+      <p>Sẽ ra mắt trong tương lai</p>
+    </div>
+    <div class="card" onclick="showDeveloping()">
+      <h3>Chức Năng Đang Phát Triển</h3>
+      <p>Sẽ ra mắt trong tương lai</p>
+    </div>
+  </div>
+
+  <script>
+    function navigate(url) {
+      window.location.href = url;
+    }
+
+    function showDeveloping() {
+      alert('Chức năng này đang được phát triển. Vui lòng quay lại sau!');
+    }
+  </script>
+</body>
+</html>
